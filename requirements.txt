@@ -1,0 +1,7 @@
+rich==11.2.0
+setuptools>=60.5.0
+build>=0.7.0
+packaging==21.3
+wheel==0.37.1
+requests==2.27.1
+pip-audit==2.0.0
