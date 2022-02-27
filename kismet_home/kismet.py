@@ -72,7 +72,7 @@ class KismetWorker(KismetBase):
         r.raise_for_status()
         return json.loads(r.text)
 
-    def get_alert_definitions(self) -> Dict[str, Any]:
+    def get_alert_definitions(self) -> Dict[Union[str, int], Any]:
         """
         Get the defined alert types
         :return:
