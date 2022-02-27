@@ -1,0 +1,1827 @@
+
+ [
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Server events",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 0,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 3,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 0,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 0,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": -1,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 3,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "KISMET",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SYSTEM",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A target device has been seen",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": -1,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DEVICEFOUND",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SYSTEM",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A target device has timed out",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": -1,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DEVICELOST",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SYSTEM",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A DHCP client sending a DHCP Discovery packet should provide a Client-ID tag (Tag 61) which matches the source MAC of the packet.  A client which fails to do so may be attempting to exhaust the DHCP pool with spoofed requests.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": -2,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DHCPCLIENTID",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "(Deprecated) Netstumbler (and similar older Windows tools) may generate unique beacons which can be used to identify these tools in use.  These tools and the cards which generate these frames are uncommon.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 0,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 0,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "NETSTUMBLER",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "PROBE",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A probe response with a SSID length of 0 can be used to crash the firmware in specific older Orinoco cards.  These cards are unlikely to be in use in modern systems.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "NULLPROBERESP",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "DENIAL",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "(Deprecated) Specific Lucent Orinoco test tools generate identifiable frames, which can indicate these tools are in use.  These tools and the cards which generate these frames are uncommon.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 0,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 0,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "LUCENTTEST",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "PROBE",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Old versions of the Broadcom Windows drivers (and Linux NDIS drivers) are vulnerable to overflow exploits.  The Metasploit framework can attack these vulnerabilities.  These drivers are unlikely to be found in modern systems, but seeing these malformed frames indicates an attempted attack is occurring.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "MSFBCOMSSID",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Old versions of the D-Link Windows drivers are vulnerable to malformed rate fields.  The Metasploit framework can attack these vulnerabilities.  These drivers are unlikely to be found in modern systems, but seeing these malformed frames indicates an attempted attack is occurring.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "MSFDLINKRATE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Old versions of the Netgear windows drivers are vulnerable to malformed beacons.  The Metasploit framework can attack these vulnerabilities.  These drivers are unlikely to be found in modern systems, but seeing these malformed frames indicates an attempted attack is occurring.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "MSFNETGEARBEACON",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The Wi-Fi standard allows for 32 characters in a SSID. Historically, some drivers have had vulnerabilities related to invalid over-long SSID fields.  Seeing these frames indicates that significant corruption or an attempted attack is occurring.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 20,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "LONGSSID",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The 802.11 specification defines reason codes for disconnect and deauthentication events.  Historically, various drivers have been reported to improperly handle invalid reason codes.  An invalid reason code indicates an improperly behaving device or an attempted attack.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DISCONCODEINVALID",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The 802.11 specification defines reason codes for disconnect and deauthentication events.  Historically, various drivers have been reported to improperly handle invalid reason codes.  An invalid reason code indicates an improperly behaving device or an attempted attack.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DEAUTHCODEINVALID",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The Wi-Fi standard specifies 24 bytes for WMM IE tags.  Over-sized WMM fields may indicate an attempt to exploit bugs in Broadcom chipsets using the Broadpwn attack",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "WMMOVERFLOW",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "An access point has changed channel.  This may occur on enterprise equipment or on personal equipment with automatic channel selection, but may also indicate a spoofed or 'evil twin' network.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "CHANCHANGE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A DHCP exchange was observed and a client was given an IP via DHCP, but is not using the assigned IP.  This may be a mis-configured client device, or may indicate client spoofing.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DHCPCONFLICT",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A broadcast disconnect packet forces all clients on a network to disconnect.  While these may rarely occur in some environments, typically a broadcast disconnect indicates a denial of service attack or an attempt to attack the network encryption by forcing clients to reconnect.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 2,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "BCASTDISCON",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "DENIAL",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Very old wireless tools used the SSID 'Airjack' while configuring card state.  It is very unlikely to see these tools in operation in modern environments.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "AIRJACKSSID",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "PROBE",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A previously encrypted SSID has stopped advertising encryption.  This may rarely occur when a network is reconfigured to an open state, but more likely indicates some form of network spoofing or 'evil twin' attack.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "CRYPTODROP",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The DHCP protocol allows clients to put the host name and DHCP client / vendor / operating system details in the DHCP Discovery packet.  These values should old change if the client has changed drastically (such as a dual-boot system with multiple operating systems).  Changing values can often indicate a client spoofing or MAC cloning attempt.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DHCPNAMECHANGE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The DHCP protocol allows clients to put the host name and DHCP client / vendor / operating system details in the DHCP Discovery packet.  These values should old change if the client has changed drastically (such as a dual-boot system with multiple operating systems).  Changing values can often indicate a client spoofing or MAC cloning attempt.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DHCPOSCHANGE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The same SSID is being advertised as an access point and as an ad-hoc network.  This may indicate a misconfigured or misbehaving device, or could indicate an attempt at spoofing or an 'evil twin' attack.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "ADHOCCONFLICT",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Kismet may be given a list of authorized MAC addresses for a SSID.  If a beacon or probe response is seen from a MAC address not listed in the authorized list, this alert will be raised.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "APSPOOF",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Conflicting 802.11d (country code) data has been advertised by the same SSID.  It is unlikely this is a normal configuration change, and can indicate a spoofed or 'evil twin' network, or an attempt to perform a denial of service on clients by restricting their frequencies.  802.11d has been phased out and is unlikely to be seen on modern devices, but it is still supported by many systems.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DOT11D",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The advertised beacon rate of a SSID has changed.  In an enterprise or multi-SSID environment this may indicate a normal configuration change, but can also indicate a spoofed or 'evil twin' network.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "BEACONRATE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A SSID has changed the advertised supported encryption standards.  This may be a normal change when reconfiguring an access point, but can also indicate a spoofed or 'evil twin' attack.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "ADVCRYPTCHANGE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Malformed management frames may indicate errors in the capture source driver (such as not discarding corrupted packets), but can also be indicative of an attempted attack against drivers which may not properly handle malformed frames.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "MALFORMMGMT",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Excessive WPS events may indicate a malformed client, or an attack on the WPS system by a tool such as Reaver.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 20,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "WPSBRUTE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Probe responses from MAC addresses with an OUI of 00:13:37 often indicate an Karma AP impersonation attack, such as that performed by a Wi-Fi Pineapple device",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "KARMAOUI",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "PROBE",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Signal levels are abnormally high, when using an external amplifier this could indicate that the gain is too high.  Over-amplified signals may miss packets entirely.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 0,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 0,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "OVERPOWERED",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "OTHER",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A WPA handshake with an empty NONCE was observed; this could indicate a WPA degradation attack such as the vanhoefm attack against BSD (https://github.com/vanhoefm/blackhat17-pocs/tree/master/openbsd), however this may also be generated during partial handshake captures",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 0,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 0,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "NONCEDEGRADE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A WPA handshake has attempted to re-use a previous nonce value; this may indicate an attack against the WPA keystream such as the vanhoefm KRACK attack (https://www.krackattacks.com/), however this may also be a normal retransmission of the handshake data packet in a busy environment.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 0,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 0,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "NONCEREUSE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Too many WMMTSPEC options were seen in a probe response; this may be triggered by CVE-2017-11013 as described at https://pleasestopnamingvulnerabilities.com/",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "WMMTSPEC",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Invalid RSN (802.11i) tags in beacon frames can be used to cause loops in some Atheros drivers, as described in CVE-2017-9714 and https://pleasestopnamingvulnerabilities.com/",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "RSNLOOP",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Invalid channels in 802.11k neighbor report frames can be used to exploit certain Broadcom HardMAC implementations, typically used in mobile devices, as described in https://bugs.chromium.org/p/project-zero/issues/detail?id=1289",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "BCOM11KCHAN",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Access points transmit a high-precision millisecond timestamp to coordinate power saving and other time-sensitive events.  Out-of-sequence timestamps may indicate spoofing or an 'evil twin' style attack.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "BSSTIMESTAMP",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Probe responses may include the Wi-Fi channel; this ought to be identical to the channel advertised in the beacon.  Incorrect channels in the probe response may indicate a spoofing or 'evil twin' style attack, but can also be indicative of a misbehaving access point or repeater.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "PROBECHAN",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "IE 127 Extended Capabilities tags should always be 8 bytes; Some versions of the Qualcomm drivers are vulnerable to a buffer overflow resulting in execution on the host, as detailed in CVE-2019-10539.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "QCOMEXTENDED",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "IE tags contain nested information in beacon and other management frames. Some IE tags have constant fixed lengths; a tag advertising with the incorrect length may indicate an attempted buffer overflow attack.  Specific attacks have their own alerts; this indicates a general, but otherwise unknown, malformed tag.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "BADFIXLENIE",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A bug in the Linux RTLWIFI P2P parsers could result in a crash or potential code execution due to malformed notification of absence records, as detailed in CVE-2019-17666",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "RTLWIFIP2P",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "By spoofing disassociate or deauthenticate packets, an attacker may disconnect clients from a network which does not support management frame protection (MFP); This can be used to cause a denial of service or to disconnect clients in an attempt to capture handshakes for attacking WPA.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 2,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 10,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "DEAUTHFLOOD",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "DENIAL",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Client does not support management frame protection (MFP); By spoofing disassociate or deauthenticate packets, an attacker may disconnect it from a network. This can be used to cause a denial of service or to disconnect it in an attempt to capture handshakes for attacking WPA.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 5,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 1,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 1,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "NOCLIENTMFP",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SPOOF",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 1645833048.375856
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Realtek 8195 devices have multiple vulnerabilities in how EAPOL packets are processed, leading to code execution as the kernel on the device, as detailed in CVE-2020-9395 and VD-1406 and VD-1407",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "RTL8195VD1406",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Realtek 8710C embedded Wi-Fi modules have multiple vulnerabilities in how EAPOL packets are processed, leading to code execution if the attacker knows the PSK of the device, as detailed in CVE-2020-27301.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "VDOO202027301",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Realtek 8710C embedded Wi-Fi modules have multiple vulnerabilities in how EAPOL packets are processed, leading to code execution if the attacker knows the PSK of the device, as detailed in CVE-2020-27302.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "VDOO202027302",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "Special characters like percent signs are used to format strings for printing in many language.  While legal in a SSID, some systems (historically iPhone and related deices) have issues processing them, leading to crashes or potential exploits.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 5,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 0,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "FORMATSTRING",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "The BleedingTooth attack (CVE-2020-24490) exploits the lack of bounds checking in the BlueZ stack and may lead to execution in the kernel.  BleedingTooth attacks use over-sized advertisement packets.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 10,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 1,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 1,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": 6,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "BLEEDINGTOOTH",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "EXPLOIT",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  },
+
+  {
+  "description.kismet.alert.definition.description": "string, Alert description",
+  "kismet.alert.definition.description": "A data source encountered an error.  Depending on the source configuration Kismet may automatically attempt to re-open the source.",
+
+  "description.kismet.alert.definition.limit_rate": "uint64_t, Alert rate limit",
+  "kismet.alert.definition.limit_rate": 1,
+
+  "description.kismet.alert.definition.limit_unit": "uint64_t, Alert limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.limit_unit": 0,
+
+  "description.kismet.alert.definition.limit_burst": "uint64_t, Burst rate limit",
+  "kismet.alert.definition.limit_burst": 10,
+
+  "description.kismet.alert.definition.severity": "uint8_t, Alert severity",
+  "kismet.alert.definition.severity": 15,
+
+  "description.kismet.alert.definition.phyid": "int64_t, Alert phy type",
+  "kismet.alert.definition.phyid": -2,
+
+  "description.kismet.alert.definition.burst_sent": "uint64_t, Alerts sent in burst",
+  "kismet.alert.definition.burst_sent": 0,
+
+  "description.kismet.alert.definition.total_sent": "uint64_t, Total alerts sent",
+  "kismet.alert.definition.total_sent": 0,
+
+  "description.kismet.alert.definition.burst_unit": "uint64_t, Burst limit time unit (defined in alertracker.h)",
+  "kismet.alert.definition.burst_unit": 0,
+
+  "description.kismet.alert.definition.header": "string, Alert name",
+  "kismet.alert.definition.header": "SOURCEERROR",
+
+  "description.kismet.alert.definition.class": "string, Alert class",
+  "kismet.alert.definition.class": "SYSTEM",
+
+  "description.kismet.alert.definition.time_last": "double, Timestamp of last alert (sec.us)",
+  "kismet.alert.definition.time_last": 0
+  }
+ ]
