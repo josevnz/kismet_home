@@ -4,10 +4,15 @@ It is recommended that you generate the configuration file using 'kismet_home_co
 """
 import json
 import os
+import unittest
+import uuid
 from datetime import datetime
 from pathlib import Path
 
 from unittest import TestCase
+
+from requests import HTTPError
+
 from kismet_home import CONSOLE
 from kismet_home.config import Reader
 from kismet_home.kismet import KismetWorker, KismetAdmin, KismetResultsParser
@@ -80,11 +85,8 @@ class TestKismetWorker(TestCase):
             dt = KismetResultsParser.pretty_timestamp(timestamp)
             self.assertEqual(timestamps[timestamp], dt)
 
-    def test_get_all_alerts(self):
-        """
-        We need to generate a fake alert in order to have something to show
-        That requires and admin session.
-        """
+    @unittest.SkipTest
+    def test_define_alert(self):
         if 'ADMIN_SESSION_API' not in os.environ:
             CONSOLE.log("'ADMIN_SESSION_API' environment variable not defined. Skipping this test")
             return
@@ -92,10 +94,31 @@ class TestKismetWorker(TestCase):
             api_key=os.environ['ADMIN_SESSION_API'],
             url=TestKismetWorker.config_reader.get_url()
         )
-        ka.raise_alert(
-            name='OTHER',
-            message="Fake alert for integration test!"
+        name = str(uuid.SafeUUID)
+        ka.define_alert(
+            name=name,
+            description='Generic test alert'
         )
+
+    def test_get_all_alerts(self):
+        if 'ADMIN_SESSION_API' not in os.environ:
+            CONSOLE.log("'ADMIN_SESSION_API' environment variable not defined. Skipping this test")
+            return
+        ka = KismetAdmin(
+            api_key=os.environ['ADMIN_SESSION_API'],
+            url=TestKismetWorker.config_reader.get_url()
+        )
+        # Send a bad alert first
+        try:
+            ka.raise_alert(
+                name='FAKE',
+                message="Fake alert for integration test!"
+            )
+            self.fail("Unknown alert type was supposed to happen!")
+        except HTTPError:
+            pass
+
+        ka.raise_alert(name='FORMATSTRING', message='Please ignore, this is a test alert')
 
         kw = KismetWorker(
             api_key=TestKismetWorker.config_reader.get_api_key(),
@@ -103,3 +126,9 @@ class TestKismetWorker(TestCase):
         )
         all_alerts = kw.get_all_alerts()
         self.assertIsNotNone(all_alerts)
+        found = False
+        for alert in all_alerts:
+            if alert['kismet.alert.text'] == 'Please ignore, this is a test alert':
+                found = True
+                break
+        self.assertTrue(found, "Could not find any custom alerts!")

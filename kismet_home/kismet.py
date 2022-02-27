@@ -47,7 +47,7 @@ class KismetWorker(KismetBase):
         r.raise_for_status()
         return json.loads(r.text)
 
-    def get_all_alerts(self) -> Dict[str, Any]:
+    def get_all_alerts(self) -> Any:
         """
         You can get a description how the alert system is set up as shown here: /alerts/definitions.prettyjson
         This method returns the last N alerts registered by the system. Severity and meaning of the alert is explained
@@ -85,6 +85,39 @@ class KismetWorker(KismetBase):
 
 class KismetAdmin(KismetBase):
 
+    def define_alert(
+            self,
+            *,
+            name: str,
+            description: str,
+            throttle: str = '10/min',
+            burst: str = "1/sec",
+            severity: int = 5,
+            aclass: str = 'SYSTEM'
+
+    ):
+        """
+        Define a new type of alert for Kismet
+        :param aclass: Alert class
+        :param severity: Alert severity
+        :param throttle: Optional throttle
+        :param name: Name of the new alert
+        :param description: What does this mean
+        :param burst: Optional burst
+        :return:
+        """
+        endpoint = f"{self.url}alerts/definitions/define_alert.cmd"
+        command = {
+            'name': name,
+            'description': description,
+            'throttle': throttle,
+            'burst': burst,
+            'severity': severity,
+            'class': aclass
+        }
+        r = requests.post(endpoint, json=command, cookies=self.cookies)
+        r.raise_for_status()
+
     def raise_alert(
             self,
             *,
@@ -97,12 +130,12 @@ class KismetAdmin(KismetBase):
         :param message: Message to send
         :return: None. Will raise an error if the alert could not be sent
         """
-        endpoint = f"{self.url}/alerts/raise_alerts.cmd"
+        endpoint = f"{self.url}alerts/raise_alerts.cmd"
         command = {
             'name': name,
             'text': message
         }
-        r = requests.post(endpoint, data=command, cookies=self.cookies)
+        r = requests.post(endpoint, json=command, cookies=self.cookies)
         r.raise_for_status()
 
 
