@@ -72,7 +72,7 @@ class KismetWorker(KismetBase):
         r.raise_for_status()
         return json.loads(r.text)
 
-    def get_alert_definitions(self) -> List[Dict[str, str]]:
+    def get_alert_definitions(self) -> List[Dict[str, Any]]:
         """
         Get the defined alert types
         :return:
@@ -172,6 +172,14 @@ class KismetResultsParser:
         'SPOOF': 'Attempt to spoof an existing device',
         'SYSTEM': 'System events, such as log changes, datasource errors, etc.'
     }
+
+    @staticmethod
+    def get_level_for_security(level: str) -> int:
+        for int_level in KismetResultsParser.SEVERITY:
+            name = KismetResultsParser.SEVERITY[int_level]['name']
+            if name == level:
+                return int_level
+        raise ValueError(f"Sorry, I cannot find a int level for {level}")
 
     @staticmethod
     def parse_alert_definitions(

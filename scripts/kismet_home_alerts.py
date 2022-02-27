@@ -13,6 +13,7 @@ import argparse
 from kismet_home import CONSOLE
 from kismet_home.config import Reader
 from kismet_home.kismet import KismetWorker, KismetResultsParser
+from kismet_home.tui import create_alert_definition_table
 
 if __name__ == '__main__':
 
@@ -27,9 +28,14 @@ if __name__ == '__main__':
         help="Enable debug mode"
     )
     arg_parser.add_argument(
+        '--level',
+        action='store',
+        default='INFO',
+        help="Enable debug mode"
+    )
+    arg_parser.add_argument(
         'mode',
         action='store',
-        nargs='+',
         choices=['alert_type', 'alerts'],
         help="Operation mode"
     )
@@ -45,7 +51,11 @@ if __name__ == '__main__':
             alert_definitions = KismetResultsParser.parse_alert_definitions(
                 alert_definitions=kw.get_alert_definitions()
             )
-            # TODO: Show results to the user
+            table = create_alert_definition_table(alert_definitions=alert_definitions, level_filter=args.level)
+            if table.columns:
+                CONSOLE.print(table)
+            else:
+                CONSOLE.print("[b]Could not get alert definitions![/b]")
         elif args.mode == 'alerts':
             alerts, severities, types = KismetResultsParser.process_alerts(
                 alerts=kw.get_all_alerts()

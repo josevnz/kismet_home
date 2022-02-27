@@ -562,7 +562,7 @@ Kismet contains a lot of details about the alerts, but we do not require to show
 * **process_alerts**: Changes numberic alerts for more descriptive types and also returns dictionaries for the types and severity meaning of those alerts.
 * **pretty_timestamp**: Convert the numeric timestamp into something we can use for comparisons and display
 
-Take a look a the code
+Look the code:
 
 ```python=
 class KismetResultsParser:
@@ -698,7 +698,7 @@ OK
 
 ### Where do we store our API key and other configuration details?
 
-Details like this won't be hardcoded inside the scripts but instead they will reside on a external configuration file:
+Details like this won't be hardcoded inside the scripts, but instead they will reside on a external configuration file:
 
 ```shell
 (kismet_home) [josevnz@dmaf5 kismet_home]$ cat ~/.config/kodegeek/kismet_home/config.ini 
@@ -804,11 +804,17 @@ Please enter your API key: E41CAD466552810392D538FF8D43E2C5
 Please note the use of the virtual environment here, this will allow to keep this application libraries self contained.
 
 
-## Putting everything together: Writting our CLI for kismet_home
+## Putting everything together: Writing our CLI for kismet_home
 
-My client will support a simple operation: Get the list of all the alerts, and show them to me in a way than is easy to understand if my network has been compromised or if everything is OK.
+The kismet_home_alerts.py script will support two modes:
+* Show the alert definitions
+* Show all the alerts
 
+Also, will allow filtering alerts based on the level (INFO, MEDIUM, HIGH, ...)
 
+Showing all the definitions, filtered by CRITICAL:
+
+![](alert_definitions_filtered_by_level.png)
 
 # Aircrack-ng
 
