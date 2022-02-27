@@ -72,7 +72,7 @@ class KismetWorker(KismetBase):
         r.raise_for_status()
         return json.loads(r.text)
 
-    def get_alert_definitions(self) -> Dict[Union[str, int], Any]:
+    def get_alert_definitions(self) -> List[Dict[str, str]]:
         """
         Get the defined alert types
         :return:
@@ -193,6 +193,8 @@ class KismetResultsParser:
                 'kismet.alert.definition.header'
             }
         parsed_alerts: List[Dict[str, str]] = []
+        if not alert_definitions:
+            return parsed_alerts
         for definition in alert_definitions:
             new_definition = {}
             for def_key in definition:
@@ -214,6 +216,8 @@ class KismetResultsParser:
         :return:
         """
         processed_alerts = []
+        if not alerts:
+            return processed_alerts
         found_types = {}
         found_severities = {}
         for alert in alerts:
