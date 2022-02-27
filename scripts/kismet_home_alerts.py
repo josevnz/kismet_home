@@ -14,8 +14,6 @@ from kismet_home import CONSOLE
 
 if __name__ == '__main__':
 
-
-
     arg_parser = argparse.ArgumentParser(
         description="",
         prog=__file__
