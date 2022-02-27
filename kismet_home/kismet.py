@@ -98,8 +98,11 @@ class KismetAdmin(KismetBase):
         :return: None. Will raise an error if the alert could not be sent
         """
         endpoint = f"{self.url}/alerts/raise_alerts.cmd"
-
-        r = requests.post(endpoint, json=None, cookies=self.cookies)
+        command = {
+            'name': name,
+            'text': message
+        }
+        r = requests.post(endpoint, data=command, cookies=self.cookies)
         r.raise_for_status()
 
 

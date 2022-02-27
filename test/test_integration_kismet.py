@@ -93,7 +93,7 @@ class TestKismetWorker(TestCase):
             url=TestKismetWorker.config_reader.get_url()
         )
         ka.raise_alert(
-            name=None,
+            name='OTHER',
             message="Fake alert for integration test!"
         )
 
