@@ -13,7 +13,7 @@ import argparse
 from kismet_home import CONSOLE
 from kismet_home.config import Reader
 from kismet_home.kismet import KismetWorker, KismetResultsParser
-from kismet_home.tui import create_alert_definition_table
+from kismet_home.tui import create_alert_definition_table, create_alert_table
 
 if __name__ == '__main__':
 
@@ -26,6 +26,12 @@ if __name__ == '__main__':
         action='store_true',
         default=False,
         help="Enable debug mode"
+    )
+    arg_parser.add_argument(
+        '--anonymize',
+        action='store_true',
+        default=False,
+        help="Anonymize MAC addresses"
     )
     arg_parser.add_argument(
         '--level',
@@ -55,12 +61,16 @@ if __name__ == '__main__':
             if table.columns:
                 CONSOLE.print(table)
             else:
-                CONSOLE.print("[b]Could not get alert definitions![/b]")
+                CONSOLE.print(f"[b]Could not get alert definitions![/b]")
         elif args.mode == 'alerts':
             alerts, severities, types = KismetResultsParser.process_alerts(
                 alerts=kw.get_all_alerts()
             )
-            # TODO: Show results to the user
+            table = create_alert_table(alerts=alerts, level_filter=args.level)
+            if table.columns:
+                CONSOLE.print(table)
+            else:
+                CONSOLE.print(f"[b]No alerts to show for level={args.level}[/b]")
     except (ValueError, HTTPError):
         logging.exception("There was an error")
         sys.exit(100)
