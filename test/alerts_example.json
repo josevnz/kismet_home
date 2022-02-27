@@ -1,0 +1,105 @@
+
+ [
+
+  {
+  "description.kismet.alert.hash": "uint32_t, Alert unique hash",
+  "kismet.alert.hash": 2533824052,
+
+  "description.kismet.alert.severity": "uint8_t, Alert severity",
+  "kismet.alert.severity": 5,
+
+  "description.kismet.alert.frequency": "double, Frequency (khz)",
+  "kismet.alert.frequency": 0,
+
+  "description.kismet.alert.dest_mac": "mac_addr, Destination MAC address",
+  "kismet.alert.dest_mac": "00:0A:35:FA:8F:00",
+
+  "description.kismet.alert.text": "string, Alert text",
+  "kismet.alert.text": "IEEE80211 network BSSID 00:0A:35:FA:8F:00 client 00:0A:35:BE:76:00 does not support management frame protection (MFP) which may ease client disassocation or deauthentication",
+
+  "description.kismet.alert.class": "string, Alert class",
+  "kismet.alert.class": "SPOOF",
+
+  "description.kismet.alert.other_mac": "mac_addr, Other / Extra MAC address",
+  "kismet.alert.other_mac": "00:00:00:00:00:00",
+
+  "description.kismet.alert.channel": "string, Phy-specific channel",
+  "kismet.alert.channel": "0",
+
+  "description.kismet.alert.location": "map[field, x], location",
+  "kismet.alert.location":
+   {
+   "description.kismet.common.location.geopoint": "pair[double, double], [lon, lat] point",
+   "kismet.common.location.geopoint": [0, 0]
+   },
+
+  "description.kismet.alert.phy_id": "uint32_t, ID of phy generating alert",
+  "kismet.alert.phy_id": 0,
+
+  "description.kismet.alert.device_key": "devicekey, Device key of linked device",
+  "kismet.alert.device_key": "00_0",
+
+  "description.kismet.alert.transmitter_mac": "mac_addr, Transmitter MAC address",
+  "kismet.alert.transmitter_mac": "00:0A:35:FA:8F:00",
+
+  "description.kismet.alert.timestamp": "double, alert update timestamp",
+  "kismet.alert.timestamp": 1645739791.814681,
+
+  "description.kismet.alert.header": "string, Alert definition",
+  "kismet.alert.header": "NOCLIENTMFP",
+
+  "description.kismet.alert.source_mac": "mac_addr, Source MAC address",
+  "kismet.alert.source_mac": "00:0A:35:BE:76:00"
+  },
+
+  {
+  "description.kismet.alert.hash": "uint32_t, Alert unique hash",
+  "kismet.alert.hash": 2568754747,
+
+  "description.kismet.alert.severity": "uint8_t, Alert severity",
+  "kismet.alert.severity": 5,
+
+  "description.kismet.alert.frequency": "double, Frequency (khz)",
+  "kismet.alert.frequency": 0,
+
+  "description.kismet.alert.dest_mac": "mac_addr, Destination MAC address",
+  "kismet.alert.dest_mac": "00:0A:35:9F:AF:00",
+
+  "description.kismet.alert.text": "string, Alert text",
+  "kismet.alert.text": "IEEE80211 network BSSID 00:0A:35:9F:AF:00 client 00:0A:35:BE:BA:00 does not support management frame protection (MFP) which may ease client disassocation or deauthentication",
+
+  "description.kismet.alert.class": "string, Alert class",
+  "kismet.alert.class": "SPOOF",
+
+  "description.kismet.alert.other_mac": "mac_addr, Other / Extra MAC address",
+  "kismet.alert.other_mac": "00:00:00:00:00:00",
+
+  "description.kismet.alert.channel": "string, Phy-specific channel",
+  "kismet.alert.channel": "0",
+
+  "description.kismet.alert.location": "map[field, x], location",
+  "kismet.alert.location":
+   {
+   "description.kismet.common.location.geopoint": "pair[double, double], [lon, lat] point",
+   "kismet.common.location.geopoint": [0, 0]
+   },
+
+  "description.kismet.alert.phy_id": "uint32_t, ID of phy generating alert",
+  "kismet.alert.phy_id": 0,
+
+  "description.kismet.alert.device_key": "devicekey, Device key of linked device",
+  "kismet.alert.device_key": "00_0",
+
+  "description.kismet.alert.transmitter_mac": "mac_addr, Transmitter MAC address",
+  "kismet.alert.transmitter_mac": "00:0A:35:9F:AF:00",
+
+  "description.kismet.alert.timestamp": "double, alert update timestamp",
+  "kismet.alert.timestamp": 1645833048.375856,
+
+  "description.kismet.alert.header": "string, Alert definition",
+  "kismet.alert.header": "NOCLIENTMFP",
+
+  "description.kismet.alert.source_mac": "mac_addr, Source MAC address",
+  "kismet.alert.source_mac": "00:0A:35:BE:BA:00"
+  }
+ ]
