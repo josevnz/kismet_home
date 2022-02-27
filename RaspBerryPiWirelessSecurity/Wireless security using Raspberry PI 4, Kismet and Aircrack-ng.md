@@ -123,7 +123,7 @@ Good, let's move on with the tool setup
 
 The version that comes with the Ubuntu RaspberryPI by default is from 2016, *way too old*.
 
-Instead, get an updated binary as explained [I have Ubuntu focal, check with ```lsb_release --all```](https://www.chelseapiersct.com/fitness/open-workout/):
+Instead, get an updated binary as [explained](https://www.kismetwireless.net/docs/readme/packages/) (I have Ubuntu focal, check with ```lsb_release --all```)
 
 ```shell=
 wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
@@ -352,7 +352,8 @@ Now let's log for the first time on the web interface (In my case http://raspber
 
 ![](https://i.imgur.com/rSmLKYA.png)
 
-![](https://i.imgur.com/VNKyT3K.png)
+![](https://i.imgur.com/EXgI6T2.png)
+
 
 So the wireless devices around me look pretty normal,except one that doesn't have a name:
 
@@ -365,7 +366,447 @@ Kistmet has a REST API, so it is time to see what we can automate from there.
 
 ## REST-API
 
-The [developer documentation](https://www.kismetwireless.net/docs/devel_group.html) contains examples of how to extend Kismet.
+The [developer documentation](https://www.kismetwireless.net/docs/devel_group.html) contains examples of how to extend Kismet, specifically the one related to the [Kismet REST-API in Python](https://github.com/kismetwireless/python-kismet-rest).
+
+But it seems to be missing a feature to use API keys, instead of user/password. And the interaction with the end points doesn't seem to be complicated so I will write my (less rich feature) wrapper.
+
+You can download and install the code for an small aplication I wrote ([kismet_home](https://github.com/josevnz/kismet_home) to ilustrate how to work with Kismet (also has a copy of this tutorial) like this:
+
+```python=
+python3 -m venv ~/virtualenv/kismet_home
+. ~/virtualenv/kismet_home/bin/activate
+python -m pip install --upgrade pip
+git clone git@github.com:josevnz/kismet_home.git
+python setup.py bdist_wheel
+pip install kismet_home-0.0.1-py3-none-any.whl
+```
+
+And then run the unit tests/ integration tests and even the third party vulnerability scanner:
+
+```shell=
+. ~/virtualenv/kismet_home/bin/activate
+pip-audit  --requirement requirements.txt
+python -m unittest test/unit_test_config.py
+python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py
+```
+
+More details on the [README.md]() and [DEVELOPER.md]() files.
+
+Let's move on into checking the code.
+
+
+### Supporting code to interact with Kismet using Python
+
+At first write a generic http client I can use to query or send commands to Kismet, that is the KismetWorker class:
+
+```python=
+import json
+from datetime import datetime
+from typing import Any, Dict, Set, List, Union
+import requests
+
+
+class KismetBase:
+
+    def __init__(self, *, api_key: str, url: str):
+        """
+        Parametric constructor
+        :param api_key: The Kismet generated API key
+        :param url: URL where the Kismet server is running
+        """
+        self.api_key = api_key
+        if url[-1] != '/':
+            self.url = f"{url}/"
+        else:
+            self.url = url
+        self.cookies = {'KISMET': self.api_key}
+
+    def __str__(self):
+        return f"url={self.url}, api_key=XXX"
+
+class KismetWorker(KismetBase):
+
+    def check_session(self) -> None:
+        """
+        Confirm if the session is valid for a given API key
+        :return: None, throws an exception if the session is invalid
+        """
+        endpoint = f"{self.url}session/check_session"
+        r = requests.get(endpoint, cookies=self.cookies)
+        r.raise_for_status()
+
+    def check_system_status(self) -> Dict[str, Any]:
+        """
+        Overall status of the Kismet server
+        :return: Nested dictionary describing different aspect of the Kismet system
+        """
+        endpoint = f"{self.url}system/status.json"
+        r = requests.get(endpoint, cookies=self.cookies)
+        r.raise_for_status()
+        return json.loads(r.text)
+
+    def get_all_alerts(self) -> Any:
+        """
+        You can get a description how the alert system is set up as shown here: /alerts/definitions.prettyjson
+        This method returns the last N alerts registered by the system. Severity and meaning of the alert is explained
+        here: https://www.kismetwireless.net/docs/devel/webui_rest/alerts/
+        :return:
+        """
+        endpoint = f"{self.url}alerts/all_alerts.json"
+        r = requests.get(endpoint, cookies=self.cookies)
+        r.raise_for_status()
+        return json.loads(r.text)
+
+    def get_alert_by_hash(self, identifier: str) -> Dict[str, Any]:
+        """
+        Get details of a single alert by its identifier (hash)
+        :return:
+        """
+        parsed = int(identifier)
+        if parsed < 0:
+            raise ValueError(f"Invalid ID provided: {identifier}")
+        endpoint = f"{self.url}alerts/by-id/{identifier}/alert.json"
+        r = requests.get(endpoint, cookies=self.cookies)
+        r.raise_for_status()
+        return json.loads(r.text)
+
+    def get_alert_definitions(self) -> Dict[Union[str, int], Any]:
+        """
+        Get the defined alert types
+        :return:
+        """
+        endpoint = f"{self.url}alerts/definitions.json"
+        r = requests.get(endpoint, cookies=self.cookies)
+        r.raise_for_status()
+        return json.loads(r.text)
+```
+
+The way Kismet API works is that you make the API KEY part of the query or you define it in the KISMET cookie, I chosse to populate the cookie.
+
+Implemented the following methods:
+
+* **check_session**: It checks if your API KEY is valid. If not it will throw an exception
+* **check_system_status**: Validates if the administrator (you most likely) defined an administrator for the Kismet server. If not, then all the API queries will fail
+* **get_all_alerts**: Get all the available alerts (if any) from your Kismet server.
+* **get_alert_by_hash**: If you know the identifier (hash) of an alert, you can retrieve the details of that event only
+* **get_alert_definitions**: Get all the alert definitions. Kismet supports a wide range of alerts and an user will definitely be interested to find out what type of alerts they are
+
+You can see [all the integration code]() here to see how the methods work in action.
+
+Also wrote a class that requires admin privileges; I use it to define a custom alert type and to send alerts of that type to kismet, as part of the integration tests. Right now I don't have much use of sending custom alerts to Kismet in real life but that may change in the future, so here is the code:
+
+```python=
+class KismetAdmin(KismetBase):
+
+    def define_alert(
+            self,
+            *,
+            name: str,
+            description: str,
+            throttle: str = '10/min',
+            burst: str = "1/sec",
+            severity: int = 5,
+            aclass: str = 'SYSTEM'
+
+    ):
+        """
+        Define a new type of alert for Kismet
+        :param aclass: Alert class
+        :param severity: Alert severity
+        :param throttle: Optional throttle
+        :param name: Name of the new alert
+        :param description: What does this mean
+        :param burst: Optional burst
+        :return:
+        """
+        endpoint = f"{self.url}alerts/definitions/define_alert.cmd"
+        command = {
+            'name': name,
+            'description': description,
+            'throttle': throttle,
+            'burst': burst,
+            'severity': severity,
+            'class': aclass
+        }
+        r = requests.post(endpoint, json=command, cookies=self.cookies)
+        r.raise_for_status()
+
+    def raise_alert(
+            self,
+            *,
+            name: str,
+            message: str
+    ) -> None:
+        """
+        Send an alert to Kismet
+        :param name: A well-defined name or id for the alert. MUST exist
+        :param message: Message to send
+        :return: None. Will raise an error if the alert could not be sent
+        """
+        endpoint = f"{self.url}alerts/raise_alerts.cmd"
+        command = {
+            'name': name,
+            'text': message
+        }
+        r = requests.post(endpoint, json=command, cookies=self.cookies)
+        r.raise_for_status()
+```
+
+Getting the data is just part of the story; We need to normalize it so it can be used by the final scripts.
+
+### Normalizing the Kismet raw data
+
+Kismet contains a lot of details about the alerts, but we do not require to show the user those details (think about the nice view you get with the web application); Instead we do a few transformations using the following class with static methods:
+
+* **parse_alert_definitions**: Returns a simplified report of all the alert definitions
+* **process_alerts**: Changes numberic alerts for more descriptive types and also returns dictionaries for the types and severity meaning of those alerts.
+* **pretty_timestamp**: Convert the numeric timestamp into something we can use for comparisons and display
+
+Take a look a the code
+
+```python=
+class KismetResultsParser:
+    SEVERITY = {
+        0: {
+            'name': 'INFO',
+            'description': 'Informational alerts, such as datasource  errors, Kismet state changes, etc'
+        },
+        5: {
+            'name': 'LOW',
+            'description': 'Low - risk events such as probe fingerprints'
+        },
+        10: {
+            'name': 'MEDIUM',
+            'description': 'Medium - risk events such as denial of service attempts'
+        },
+        15: {
+            'name': 'HIGH',
+            'description': 'High - risk events such as fingerprinted watched devices, denial of service attacks, '
+                           'and similar '
+        },
+        20: {
+            'name': 'CRITICAL',
+            'description': 'Critical errors such as fingerprinted known exploits'
+        }
+    }
+
+    TYPES = {
+        'DENIAL': 'Possible denial of service attack',
+        'EXPLOIT': 'Known fingerprinted exploit attempt against a vulnerability',
+        'OTHER': 'General category for alerts which don’t fit in any existing bucket',
+        'PROBE': 'Probe by known tools',
+        'SPOOF': 'Attempt to spoof an existing device',
+        'SYSTEM': 'System events, such as log changes, datasource errors, etc.'
+    }
+
+    @staticmethod
+    def parse_alert_definitions(
+            *,
+            alert_definitions: List[Dict[str, str]],
+            keys_of_interest: Set[str] = None
+    ) -> List[Dict[str, str]]:
+        """
+        Remove unwanted keys from full alert definition dump, to make it easier to read onscreen
+        :param alert_definitions: Original Kismet alert definitions
+        :param keys_of_interest: Kismet keys of interest
+        :return: List of dictionaries with trimmed keys, description, severity and header for easy reading
+        """
+        if keys_of_interest is None:
+            keys_of_interest = {
+                'kismet.alert.definition.class',
+                'kismet.alert.definition.description',
+                'kismet.alert.definition.severity',
+                'kismet.alert.definition.header'
+            }
+        parsed_alerts: List[Dict[str, str]] = []
+        for definition in alert_definitions:
+            new_definition = {}
+            for def_key in definition:
+                if def_key in keys_of_interest:
+                    new_key = def_key.split('.')[-1]
+                    new_definition[new_key] = definition[def_key]
+            parsed_alerts.append(new_definition)
+        return parsed_alerts
+
+    @staticmethod
+    def process_alerts(
+            *,
+            alerts: List[Dict[str, Union[str, int]]],
+
+    ) -> Any:
+        """
+        Removed unwanted fields from alert details, also return extra data for severity and types of alerts
+        :param alerts:
+        :return:
+        """
+        processed_alerts = []
+        found_types = {}
+        found_severities = {}
+        for alert in alerts:
+            severity = alert['kismet.alert.severity']
+            severity_name = KismetResultsParser.SEVERITY[severity]['name']
+            severity_desc = KismetResultsParser.SEVERITY[severity]['description']
+            found_severities[severity_name] = severity_desc
+            text = alert['kismet.alert.text']
+            aclass = alert['kismet.alert.class']
+            found_types[aclass] = KismetResultsParser.TYPES[aclass]
+            processed_alert = {
+                'text': text,
+                'class': aclass,
+                'severity': severity_name,
+                'hash': alert['kismet.alert.hash'],
+                'dest_mac': alert['kismet.alert.dest_mac'],
+                'source_mac': alert['kismet.alert.source_mac'],
+                'timestamp': alert['kismet.alert.timestamp']
+            }
+            processed_alerts.append(processed_alert)
+        return processed_alerts, found_severities, found_types
+
+    @staticmethod
+    def pretty_timestamp(timestamp: float) -> datetime:
+        """
+        Convert a Kismet timestamp (TIMESTAMP.UTIMESTAMP) into a pretty timestamp string
+        :param timestamp:
+        :return:
+        """
+        return datetime.fromtimestamp(timestamp)
+```
+
+If you run the integration tests with the admin role enabled, you will see than one or more (depending how many times you ran the test) alerts were added to the Web UI:
+
+![](https://i.imgur.com/JE4KdgP.png)
+
+
+As a reminder, you can see how this is used by looking at the code [here](); Showing a sample run of all the integration tests against my installation:
+
+```shell
+(kismet_home) [josevnz@dmaf5 kismet_home]$ python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py 
+[09:13:05] DEBUG    Starting new HTTP connection (1): raspberrypi.home:2501                                                                                                                                                        connectionpool.py:228
+           DEBUG    http://raspberrypi.home:2501 "GET /session/check_session HTTP/1.1" 200 None                                                                                                                                    connectionpool.py:456
+.           DEBUG    Starting new HTTP connection (1): raspberrypi.home:2501                                                                                                                                                        connectionpool.py:228
+           DEBUG    http://raspberrypi.home:2501 "GET /system/status.json HTTP/1.1" 200 None                                                                                                                                       connectionpool.py:456
+.           DEBUG    Starting new HTTP connection (1): raspberrypi.home:2501                                                                                                                                                        connectionpool.py:228
+           DEBUG    http://raspberrypi.home:2501 "GET /alerts/definitions.json HTTP/1.1" 200 None                                                                                                                                  connectionpool.py:456
+.[09:13:05] 'ADMIN_SESSION_API' environment variable not defined. Skipping this test                                                                                                                                       test_integration_kismet.py:105
+....
+----------------------------------------------------------------------
+Ran 7 tests in 0.053s
+
+OK
+
+```
+
+### Where do we store our API key and other configuration details?
+
+Details like this won't be hardcoded inside the scripts but instead they will reside on a external configuration file:
+
+```shell
+(kismet_home) [josevnz@dmaf5 kismet_home]$ cat ~/.config/kodegeek/kismet_home/config.ini 
+[server]
+url = http://raspberrypi.home:2501
+api_key = E41CAD466552810392D538FF8D43E2C5
+```
+
+I wrote the following class to handle all the access details (using a Reader and a Writer class for each type of operation):
+```python=
+"""
+Simple configuration management for kismet_home settings
+"""
+import os.path
+from configparser import ConfigParser
+from pathlib import Path
+from typing import Dict
+
+from kismet_home import CONSOLE
+
+DEFAULT_INI = os.path.expanduser('~/.config/kodegeek/kismet_home/config.ini')
+VALID_KEYS = {'api_key', 'url'}
+
+
+class Reader:
+
+    def __init__(self, config_file: str = DEFAULT_INI):
+        """
+        Constructor
+        :param config_file: Optional override of the ini configuration file
+        """
+        self.config = ConfigParser()
+        if not self.config.read(config_file):
+            raise ValueError(f"Could not read {config_file}")
+
+    def get_api_key(self):
+        """
+        Get back the API key used to connect to Kismet
+        :return:
+        """
+        return self.config.get('server', 'api_key')
+
+    def get_url(self):
+        """
+        Get back URL of Kismet server
+        :return:
+        """
+        return self.config.get('server', 'url')
+
+
+class Writer:
+
+    def __init__(
+            self,
+            *,
+            server_keys: Dict[str, str]
+    ):
+        if not server_keys:
+            raise ValueError("Configuration is incomplete!, aborting!")
+        self.config = ConfigParser()
+        self.config.add_section('server')
+        valid_keys_cnt = 0
+        for key in server_keys:
+            value = server_keys[key]
+            if key not in VALID_KEYS:
+                CONSOLE.log(f"Ignoring invalid key: {key} = {value}")
+                continue
+            self.config.set('server', key, value)
+            CONSOLE.log(f"Added: server: {key} = {value}")
+        for valid_key in VALID_KEYS:
+            if not self.config.get('server', valid_key):
+                raise ValueError(f"Missing required key: {valid_key}")
+
+    def save(
+            self,
+            *,
+            config_file: str = DEFAULT_INI
+    ):
+        basedir = Path(config_file).parent
+        basedir.mkdir(exist_ok=True, parents=True)
+        with open(config_file, 'w') as config:
+            self.config.write(config, space_around_delimiters=True)
+        CONSOLE.log(f"Configuration file {config_file} written")
+```
+
+The first time you setup your kismet_home installation, you can create the configuration files like this:
+```shell=
+[josevnz@dmaf5 kismet_home]$ python3 -m venv ~/virtualenv/kismet_home
+[josevnz@dmaf5 kismet_home]$ . ~/virtualenv/kismet_home/bin/activate
+(kismet_home) [josevnz@dmaf5 kismet_home]$ python -m pip install --upgrade pip
+(kismet_home) [josevnz@dmaf5 kismet_home]$ git clone git@github.com:josevnz/kismet_home.git
+(kismet_home) [josevnz@dmaf5 kismet_home]$ python setup.py bdist_wheel
+(kismet_home) [josevnz@dmaf5 kismet_home]$ pip install kismet_home-0.0.1-py3-none-any.whl
+
+(kismet_home) [josevnz@dmaf5 kismet_home]$ kismet_home_config.py 
+Please enter the URL of your Kismet server: http://raspberrypi.home:2501/
+Please enter your API key: E41CAD466552810392D538FF8D43E2C5
+[13:02:35] Added: server: url = http://raspberrypi.home:2501/                                                                                 config.py:44
+           Added: server: api_key = E41CAD466552810392D538FF8D43E2C5                                                                          config.py:44
+           Configuration file /home/josevnz/.config/kodegeek/kismet_home/config.ini written
+```
+
+Please note the use of the virtual environment here, this will allow to keep this application libraries self contained.
+
+
+## Putting everything together: Writting our CLI for kismet_home
+
+My client will support a simple operation: Get the list of all the alerts, and show them to me in a way than is easy to understand if my network has been compromised or if everything is OK.
 
 
 
