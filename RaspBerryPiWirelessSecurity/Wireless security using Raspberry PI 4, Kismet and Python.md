@@ -368,13 +368,13 @@ python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py
 pip-audit  --requirement requirements.txt
 ```
 
-More details on the [README.md](../README.md) and [DEVELOPER.md](../DEVELOPER.md) files.
+You will find more details on the [README.md](../README.md) and [DEVELOPER.md](../DEVELOPER.md) files.
 
 Let's move on with the code.
 
-### Supporting code to interact with Kismet using Python
+### Interacting with Kismet using Python
 
-At first write a generic http client I can use to query or send commands to Kismet, that is the KismetWorker class:
+At first write a generic http client I can use to query or send commands to Kismet, that is the _KismetWorker_ class:
 
 ```python
 import json
@@ -458,9 +458,9 @@ class KismetWorker(KismetBase):
         return json.loads(r.text)
 ```
 
-The way Kismet API works is that you make the API KEY part of the query or you define it in the KISMET cookie, I chosse to populate the cookie.
+The way Kismet API works is that you make the API KEY part of the query, or you define it in the KISMET cookie, I choose to populate the cookie.
 
-Implemented the following methods:
+KismetWorker implements the following methods:
 
 * **check_session**: It checks if your API KEY is valid. If not it will throw an exception
 * **check_system_status**: Validates if the administrator (you most likely) defined an administrator for the Kismet server. If not, then all the API queries will fail
@@ -470,7 +470,7 @@ Implemented the following methods:
 
 You can see [all the integration code](../test/test_integration_kismet.py) here to see how the methods work in action.
 
-Also wrote a class that requires admin privileges; I use it to define a custom alert type and to send alerts of that type to kismet, as part of the integration tests. Right now I don't have much use of sending custom alerts to Kismet in real life but that may change in the future, so here is the code:
+Also wrote a class that requires admin privileges; I use it to define a custom alert type and to send alerts using that type to kismet, as part of the integration tests. Right now I don't have much use of sending custom alerts to Kismet in real life but that may change in the future, so here is the code:
 
 ```python
 class KismetAdmin(KismetBase):
@@ -539,7 +539,7 @@ Kismet contains a lot of details about the alerts, but we do not require to show
 * **process_alerts**: Changes numeric alerts for more descriptive types and also returns dictionaries for the types and severity meaning of those alerts.
 * **pretty_timestamp**: Convert the numeric timestamp into something we can use for comparisons and display
 
-Look the code:
+The code for the _KismetResultsParser_ helper class:
 
 ```python
 class KismetResultsParser:
@@ -654,7 +654,7 @@ If you run the integration tests with the admin role enabled, you will see than 
 ![](kismet_generated_alerts.png)
 
 
-As a reminder, you can see how this is used by looking at the code [here](../test/test_integration_kismet.py); Showing a sample run of all the integration tests against my installation:
+As a reminder, you can see how this is used by looking at the code [here](../test/test_integration_kismet.py); Showing a sample run of all the integration tests against my installation (this one without publishing alerts, so some tests are skipped):
 
 ```shell
 (kismet_home) [josevnz@dmaf5 kismet_home]$ python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py 
@@ -684,7 +684,7 @@ url = http://raspberrypi.home:2501
 api_key = E41CAD466552810392D538FF8D43E2C5
 ```
 
-The following class to handles all the access details (using a Reader and a Writer class for each type of operation):
+The following classes handle all the access details (using a Reader and a Writer class for each type of operation):
 ```python
 """
 Simple configuration management for kismet_home settings
@@ -783,7 +783,7 @@ Please note the use of the virtual environment here, this will allow to keep thi
 
 ## Putting everything together: Writing our CLI for kismet_home
 
-The kismet_home_alerts.py script will support two modes:
+The _kismet_home_alerts.py_ script will support two modes:
 * Show the alert definitions
 * Show all the alerts
 
