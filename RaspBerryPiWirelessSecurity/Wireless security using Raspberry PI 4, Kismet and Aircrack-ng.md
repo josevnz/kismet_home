@@ -102,7 +102,7 @@ Good, let's move on with the tool setup
 
 > Kismet is a wireless network and device detector, sniffer, wardriving tool, and WIDS (wireless intrusion detection) framework.
 
-## Kistmet installation and setup
+## Kismet installation and setup
 
 The version that comes with the Ubuntu RaspberryPI by default is from 2016, *way too old*.
 
@@ -135,7 +135,7 @@ logprefix=/data/kismet
 
 ### /etc/kismet/kismet_httpd.conf
 
-I will enable SSL for my Kistmet [installation by using a self signed certificate](https://github.com/josevnz/home_nmap/tree/main/tutorial). I will use for that the Cloudflare CFSSL tools:
+I will enable SSL for my Kistmet [installation by using a self-signed certificate](https://github.com/josevnz/home_nmap/tree/main/tutorial). I will use for that the Cloudflare CFSSL tools:
 
 ```shell=
 sudo apt-get update -y
@@ -333,14 +333,14 @@ josevnz@raspberrypi:~$ kismet
 ```
 Now let's log for the first time on the web interface (In my case http://raspberripi.home:2501)
 
-![](https://i.imgur.com/rSmLKYA.png)
+![](kismet-set-login.png)
 
-![](https://i.imgur.com/EXgI6T2.png)
+![](kismet-main-screen.png)
 
 
 So the wireless devices around me look pretty normal,except one that doesn't have a name:
 
-![](https://i.imgur.com/6JfY7sE.png)
+![](suspect-device-details-kismet.png)
 
 
 The web interface provides all sorts of useful information, but there is a easy way to filter all the mac addresses on my networks?
@@ -353,7 +353,7 @@ The [developer documentation](https://www.kismetwireless.net/docs/devel_group.ht
 
 But it seems to be missing a feature to use API keys, instead of user/password. And the interaction with the end points doesn't seem to be complicated so I will write my (less rich feature) wrapper.
 
-You can download and install the code for an small aplication I wrote ([kismet_home](https://github.com/josevnz/kismet_home) to ilustrate how to work with Kismet (also has a copy of this tutorial) like this:
+You can download and install the code for a small application I wrote ([kismet_home](https://github.com/josevnz/kismet_home) to ilustrate how to work with Kismet (also has a copy of this tutorial) like this:
 
 ```shell
 python3 -m venv ~/virtualenv/kismet_home
@@ -541,7 +541,7 @@ Getting the data is just part of the story; We need to normalize it so it can be
 Kismet contains a lot of details about the alerts, but we do not require to show the user those details (think about the nice view you get with the web application); Instead we do a few transformations using the following class with static methods:
 
 * **parse_alert_definitions**: Returns a simplified report of all the alert definitions
-* **process_alerts**: Changes numberic alerts for more descriptive types and also returns dictionaries for the types and severity meaning of those alerts.
+* **process_alerts**: Changes numeric alerts for more descriptive types and also returns dictionaries for the types and severity meaning of those alerts.
 * **pretty_timestamp**: Convert the numeric timestamp into something we can use for comparisons and display
 
 Look the code:
@@ -656,7 +656,7 @@ class KismetResultsParser:
 
 If you run the integration tests with the admin role enabled, you will see than one or more (depending how many times you ran the test) alerts were added to the Web UI:
 
-![](https://i.imgur.com/JE4KdgP.png)
+![](kismet_generated_alerts.png)
 
 
 As a reminder, you can see how this is used by looking at the code [here](); Showing a sample run of all the integration tests against my installation:
