@@ -1,4 +1,4 @@
-# Wireless security using Raspberry PI 4, Kismet and Aircrack-ng
+# Wireless security using Raspberry PI 4, Kismet and Python
 
 Everything is connected to wireless these days; In my case I found that I have LOTS of devices after running a simple [nmap command on my home network](https://www.freecodecamp.org/news/enhance-nmap-with-python/#nmap-101-identify-all-the-public-services-in-our-network):
 
@@ -14,43 +14,26 @@ I have a Raspberry 4 with Ubuntu installed and decided to use the well-known [Ai
 
 In this article you will learn:
 
-* How to install and setup Aircrack-ng
-* How to get a whole picture of the networks nearby you
-* How to capture the handshake of your own network and how you infiltrate it
+* How to get a whole picture of the networks nearby you with Kismet
+* How to customize Kismet using Python and the REST-API
 
 # Note: The saying 'Ask for forgiveness, not permission' doesn't apply here
 
-And by that I mean that you should not be trying to evasdrop or infiltrate at wireless network that is not yours. It is relatively easy to detect if a new unknow client joined your wireless network, also it is illegal.
+And by that I mean that you should not be trying to eavesdrop or infiltrate at wireless network that is not yours. It is relatively easy to detect if a new unknow client joined your wireless network, also it is illegal.
 
-So do the right thing, use this tutorial to learn and not to break into someone elses network, OK?
+So do the right thing, use this tutorial to learn and not to break into someone else's network, OK?
 
 # Getting to know your hardware
 
-I will jump a little bit ahead to show you a small issue with the Raspberry 4 integrated Wireless interface.
+I will jump a little ahead to show you a small issue with the Raspberry 4 integrated Wireless interface.
 
 __The Raspberry PI 4 onboard wireless card will not work out of the box as the firmware doesn't support monitor mode__
 
-If you run airmon-ng you will get the following error:
-
-```shell
-josevnz@raspberrypi:~$ sudo airmon-ng start wlan0
-
-
-PHY	Interface	Driver		Chipset
-
-phy0	wlan0		brcmfmac	Broadcom 43430
-
-
-ERROR adding monitor mode interface: command failed: Operation not supported (-95)
-
-```
-
 There are works to [support this](https://github.com/seemoo-lab/bcm-rpi3), but you are also risking bricking your hardware. Instead I took the easy way out and ordered an external Wifi dungle from [CanaKit](https://www.canakit.com/raspberry-pi-wifi.html).
 
-The CanaKit wireless card worked out of the box, will see it shortly. But first let's install and play with our first tool
+The CanaKit wireless card worked out of the box, will see it shortly. But first let's install and play Kismet.
 
-
-## Making sure the interface is setup in monitor mode
+## Making sure the interface is running in monitor mode
 
 By default, the network interface will have the monitor mode off:
 ```shell
@@ -1037,113 +1020,11 @@ A few things to note:
 * The layout is crude, there is plenty of room for improvement. But our little tui is displaying relevant information without too many distractions
 * And if was fun to code!
 
-# Aircrack-ng
-
-So what is it [aircrack-ng](https://aircrack-ng.org/index.html)?
-
-> Aircrack-ng is a complete suite of tools to assess WiFi network security.
-> It focuses on different areas of WiFi security:
-> * Monitoring: Packet capture and export of data to text files for further processing by third party tools
-> * Attacking: Replay attacks, deauthentication, fake access points and others via packet injection
-> * Testing: Checking WiFi cards and driver capabilities (capture and injection)
-> * Cracking: WEP and WPA PSK (WPA 1 and 2)
-
-
-
-
-
-## Installation of Aircrack-ng
-
-```shell=
-sudo apt-get install aircrack-ng
-sudo apt-get -y install libssl-dev
-airodump-ng-oui-update
-/usr/sbin/update-ieee-data
-Updating /var/lib/ieee-data//oui.txt
-	Checking permissions on /var/lib/ieee-data//oui.txt
-	Downloading https://standards.ieee.org/develop/regauth/oui/oui.txt to /var/lib/ieee-data//oui.txt
-	Checking header
-	Temporary location /tmp/ieee-data_y9Ge42 to be moved to /var/lib/ieee-data//oui.txt
-	/var/lib/ieee-data//oui.txt updated.
-...
-```
-
-# Getting to know your hardware
-__The Raspberry PI 4 onboard wireless card will not work out of the box as the firmware doesn't support monitor mode__
-
-If you run airmon-ng you will get the following error:
-
-```shell=
-josevnz@raspberrypi:~$ sudo airmon-ng start wlan0
-
-
-PHY	Interface	Driver		Chipset
-
-phy0	wlan0		brcmfmac	Broadcom 43430
-
-
-ERROR adding monitor mode interface: command failed: Operation not supported (-95)
-
-```
-
-There are works to [support this](https://github.com/seemoo-lab/bcm-rpi3), but you are also risking bricking your hardware. Instead I took the easy way out and ordered an external Wifi dungle from [CanaKit](https://www.canakit.com/raspberry-pi-wifi.html).
-
-The CanaKit wireless card worked out of the box as I will show you next
-
-# Configuring your network interfaces for data capture
-
-First step, let's make sure airmon can take over the network interfaces:
-```shell=
-josevnz@raspberrypi:~$ sudo airmon-ng check kill
-```
-
-```shell=
-josevnz@raspberrypi:~$ sudo airmon-ng 
-
-PHY	Interface	Driver		Chipset
-
-phy0	wlan0		brcmfmac	Broadcom 43430
-phy1	wlan1   	rt2800usb	Ralink Technology, Corp. RT5370
-```
-
-Start airmon-ng, and confirm wlan1 is in monitor mode:
-
-```shell
-josevnz@raspberrypi:~$ sudo airmon-ng start wlan1
-
-
-PHY	Interface	Driver		Chipset
-
-phy0	wlan0		brcmfmac	Broadcom 43430
-phy1	wlan1		rt2800usb	Ralink Technology, Corp. RT5370
-
-		(mac80211 monitor mode vif enabled for [phy1]wlan1 on [phy1]wlan1mon)
-		(mac80211 station mode vif disabled for [phy1]wlan1)
-
-josevnz@raspberrypi:~$ iwconfig
-wlan0     IEEE 802.11  ESSID:off/any  
-          Mode:Managed  Access Point: Not-Associated   Tx-Power=31 dBm   
-          Retry short limit:7   RTS thr:off   Fragment thr:off
-          Power Management:on
-          
-docker0   no wireless extensions.
-
-lo        no wireless extensions.
-
-wlan1mon  IEEE 802.11  Mode:Monitor  Frequency:2.457 GHz  Tx-Power=20 dBm   
-          Retry short  long limit:2   RTS thr:off   Fragment thr:off
-          Power Management:off
-          
-docker_gwbridge  no wireless extensions.
-
-eth0      no wireless extensions.
-
-
-```
-
-We can see than 'wlan1mon' is on monitor mode. Good, next step is to see what is around us
-
-
-
 # What did we learn?
 
+* How to install Kismet and secure it with a self-signed SSL certificate
+* How to add an API KEY with read-only access to use it instead of the legacy user/ password schema for authentication and authorization
+* Wrote a classes in Python that can communicate with Kismet using its REST-API
+* Added unit and integration tests to the code to make sure everything works and new code changes do not break existing functionality
+
+Please leave your comments on the [GitHub repository](https://github.com/josevnz/kismet_home) and report any bugs. But more important get Kismet, get the code and start securing your home wireless infrastructure in no time.
