@@ -2,7 +2,7 @@
 
 Everything is connected to wireless these days; In my case I found that I have LOTS of devices after running a simple [nmap command on my home network](https://www.freecodecamp.org/news/enhance-nmap-with-python/#nmap-101-identify-all-the-public-services-in-our-network):
 
-```shell=
+```shell
 [josevnz@dmaf5 ~]$ sudo nmap -v -n -p- -sT -sV -O --osscan-limit --max-os-tries 1 -oX $HOME/home_scan.xml 192.168.1.0/24
 ```
 
@@ -10,7 +10,7 @@ So I started to wonder?
 * Is my wireless network secure?
 * How long would it take to an attacker to get in?
 
-I have a Raspberry 4 with Ubutu installed and decided to use the well know [Aircrack-ng](https://aircrack-ng.org/index.html) to find out.
+I have a Raspberry 4 with Ubuntu installed and decided to use the well-known [Aircrack-ng](https://aircrack-ng.org/index.html) to find out.
 
 In this article you will learn:
 
@@ -32,7 +32,7 @@ __The Raspberry PI 4 onboard wireless card will not work out of the box as the f
 
 If you run airmon-ng you will get the following error:
 
-```shell=
+```shell
 josevnz@raspberrypi:~$ sudo airmon-ng start wlan0
 
 
@@ -52,8 +52,8 @@ The CanaKit wireless card worked out of the box, will see it shortly. But first 
 
 ## Making sure the interface is setup in monitor mode
 
-By default the network interface will have the monitor mode off:
-```shell=
+By default, the network interface will have the monitor mode off:
+```shell
 root@raspberrypi:~# iwconfig wlan1
 wlan1     IEEE 802.11  ESSID:off/any  
           Mode:Managed  Access Point: Not-Associated   Tx-Power=0 dBm   
@@ -65,9 +65,9 @@ wlan1     IEEE 802.11  ESSID:off/any
 
 I know I will always set up my 'Ralink Technology, Corp. RT5370 Wireless Adapter' adapter in monitor mode, but I need to be careful as Ubuntu can swap wlan0 and wlan1 (The Broadcom adapter I want to skip).
 
-The Ralink adapter is a usb adapter, so we can find out where it it:
+The Ralink adapter is an usb adapter, so we can find out where it is:
 
-```shell=
+```shell
 josevnz@raspberrypi:/etc/netplan$ /bin/lsusb|grep Ralink
 Bus 001 Device 004: ID 148f:5370 Ralink Technology, Corp. RT5370 Wireless Adapter
 ```
@@ -76,14 +76,14 @@ Now we need to find out what device was mapped to the Ralink adapter; With a lit
 
 The answer I seek is here:
 
-```shell=
+```shell
 josevnz@raspberrypi:~$ ls /sys/bus/usb/drivers/rt2800usb/*:1.0/net/
 wlan1
 ```
 
 So my final script looks like this:
 
-```shell=
+```shell
 root@raspberrypi:~#/bin/cat<<RC_LOCAL>/etc/rc.local
 #!/bin/bash
 usb_driver=rt2800usb
@@ -101,7 +101,7 @@ root@raspberrypi:~# chmod u+x /etc/rc.local && shutdown -r now "Enabling monitor
 
 Make sure the card is on monitor mode:
 
-```shell=
+```shell
 root@raspberrypi:~# iwconfig wlan1
 iw        iwconfig  iwevent   iwgetid   iwlist    iwpriv    iwspy     
 root@raspberrypi:~# iwconfig wlan1
@@ -125,7 +125,7 @@ The version that comes with the Ubuntu RaspberryPI by default is from 2016, *way
 
 Instead, get an updated binary as [explained](https://www.kismetwireless.net/docs/readme/packages/) (I have Ubuntu focal, check with ```lsb_release --all```)
 
-```shell=
+```shell
 wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 echo 'deb https://www.kismetwireless.net/repos/apt/release/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list
 sudo apt update
@@ -162,7 +162,7 @@ sudo apt-get install -y golang-cfssl
 Next step is to create the self-signed certificates. There is a lot of boilerplate steps here, so I will show you how you can jump through them (but please read the man pages to see what each command do):
 
 #### Initial certificate
-```shell=
+```shell
 sudo /bin/mkdir --parents /etc/pki/raspberrypi
 sudo /bin/cat<<CA>/etc/pki/raspberrypi/ca.json
 {
@@ -186,7 +186,7 @@ cfssl gencert -initca ca.json | cfssljson -bare ca
 ```
 
 #### SSL profile
-```shell=
+```shell
 root@raspberrypi:/etc/pki/raspberrypi# /bin/cat<<PROFILE>/etc/pki/raspberrypi/cfssl.json
 {
    "signing": {
@@ -246,7 +246,7 @@ PROFILE
 ```
 
 #### Intermediate certificate
-```shell=
+```shell
 root@raspberrypi:/etc/pki/raspberrypi# /bin/cat<<INTERMEDIATE>/etc/pki/raspberrypi/intermediate-ca.json
 {
   "CN": "Barrios Nunez Intermediate CA",
@@ -277,7 +277,7 @@ cfssl sign -ca ca.pem -ca-key ca-key.pem -config cfssl.json -profile intermediat
 Here we put the name and IP address of the machine that will run our Kismet web application:
 
 
-```shell=
+```shell
 /bin/cat<<RASPBERRYPI>/etc/pki/raspberrypi/raspberrypi.home.json
 {
   "CN": "raspberrypi.home",
@@ -321,7 +321,7 @@ SSL
 
 Kismet has a really nice feature, it can use a file that override some of the defaults, without the need to edit multiple files. In this case My installation will override the SSL settings, Wifi interface and log location. So time to update our /etc/rc.local file:
 
-```shell=
+```shell
 #!/bin/bash
 # Kismet setup
 usb_driver=rt2800usb
@@ -372,7 +372,7 @@ But it seems to be missing a feature to use API keys, instead of user/password. 
 
 You can download and install the code for an small aplication I wrote ([kismet_home](https://github.com/josevnz/kismet_home) to ilustrate how to work with Kismet (also has a copy of this tutorial) like this:
 
-```python=
+```shell
 python3 -m venv ~/virtualenv/kismet_home
 . ~/virtualenv/kismet_home/bin/activate
 python -m pip install --upgrade pip
@@ -383,7 +383,7 @@ pip install kismet_home-0.0.1-py3-none-any.whl
 
 And then run the unit tests/ integration tests and even the third party vulnerability scanner:
 
-```shell=
+```shell
 . ~/virtualenv/kismet_home/bin/activate
 pip-audit  --requirement requirements.txt
 python -m unittest test/unit_test_config.py
@@ -392,14 +392,13 @@ python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py
 
 More details on the [README.md]() and [DEVELOPER.md]() files.
 
-Let's move on into checking the code.
-
+Let's move on with the code.
 
 ### Supporting code to interact with Kismet using Python
 
 At first write a generic http client I can use to query or send commands to Kismet, that is the KismetWorker class:
 
-```python=
+```python
 import json
 from datetime import datetime
 from typing import Any, Dict, Set, List, Union
@@ -495,7 +494,7 @@ You can see [all the integration code]() here to see how the methods work in act
 
 Also wrote a class that requires admin privileges; I use it to define a custom alert type and to send alerts of that type to kismet, as part of the integration tests. Right now I don't have much use of sending custom alerts to Kismet in real life but that may change in the future, so here is the code:
 
-```python=
+```python
 class KismetAdmin(KismetBase):
 
     def define_alert(
@@ -564,7 +563,7 @@ Kismet contains a lot of details about the alerts, but we do not require to show
 
 Look the code:
 
-```python=
+```python
 class KismetResultsParser:
     SEVERITY = {
         0: {
@@ -707,8 +706,8 @@ url = http://raspberrypi.home:2501
 api_key = E41CAD466552810392D538FF8D43E2C5
 ```
 
-I wrote the following class to handle all the access details (using a Reader and a Writer class for each type of operation):
-```python=
+The following class to handles all the access details (using a Reader and a Writer class for each type of operation):
+```python
 """
 Simple configuration management for kismet_home settings
 """
@@ -784,8 +783,8 @@ class Writer:
         CONSOLE.log(f"Configuration file {config_file} written")
 ```
 
-The first time you setup your kismet_home installation, you can create the configuration files like this:
-```shell=
+The first time you set up your kismet_home installation, you can create the configuration files like this:
+```shell
 [josevnz@dmaf5 kismet_home]$ python3 -m venv ~/virtualenv/kismet_home
 [josevnz@dmaf5 kismet_home]$ . ~/virtualenv/kismet_home/bin/activate
 (kismet_home) [josevnz@dmaf5 kismet_home]$ python -m pip install --upgrade pip
@@ -815,6 +814,228 @@ Also, will allow filtering alerts based on the level (INFO, MEDIUM, HIGH, ...)
 Showing all the definitions, filtered by CRITICAL:
 
 ![](alert_definitions_filtered_by_level.png)
+
+Or showing all the alerts received so far, with anonymous MAC address (great for screenshots like this):
+
+![](kismet_home_alerts.png)
+
+How you can generate this tables with ease? There is a dedicated class for the text user interface (TUI):
+
+```python
+from typing import List, Dict, Any
+
+from rich.layout import Layout
+from rich.table import Table
+
+from kismet_home.kismet import KismetResultsParser
+
+
+def create_alert_definition_table(
+        *,
+        alert_definitions: List[Dict[str, Any]],
+        level_filter: str = 0
+) -> Table:
+    """
+    Create a table showing the alert definitions
+    :param alert_definitions: Alert definitions from Kismet
+    :param level_filter: User can override the level of the alerts shown. But default is 0 (INFO)
+    :return: A Table with the alert definitions
+    """
+    definition_table = Table(title="Alert definitions")
+    definition_table.add_column("Severity", justify="right", style="cyan", no_wrap=True)
+    definition_table.add_column("Description", style="magenta")
+    definition_table.add_column("Header", justify="right", style="yellow")
+    definition_table.add_column("Class", justify="right", style="green")
+    filter_level = KismetResultsParser.get_level_for_security(level_filter)
+    filtered_definitions = 0
+    for definition in alert_definitions:
+        int_severity: int = definition['severity']
+        if int_severity < filter_level:
+            continue
+        severity = KismetResultsParser.SEVERITY[int_severity]['name']
+        if 0 <= int_severity < 5:
+            severity = f"[bold blue]{severity}[/ bold blue]"
+        if 5 <= int_severity < 10:
+            severity = f"[bold yellow]{severity}[/ bold yellow]"
+        if 10 <= int_severity < 15:
+            severity = f"[bold orange]{severity}[/ bold orange]"
+        else:
+            severity = f"[bold red]{severity}[/ bold red]"
+        filtered_definitions += 1
+        definition_table.add_row(
+            severity,
+            definition['description'],
+            definition['header'],
+            definition['class']
+        )
+    definition_table.caption = f"Total definitions: {filtered_definitions}"
+    return definition_table
+
+
+def create_alert_layout(
+        *,
+        alerts: List[Dict[str, Any]],
+        level_filter: str = 0,
+        anonymize: bool = False,
+        severities: Dict[str, str]
+):
+    """
+    :param severities:
+    :param alerts:
+    :param level_filter:
+    :param anonymize:
+    :return:
+    """
+    alerts_table = Table(title="Alert definitions")
+    alerts_table.add_column("Timestamp", no_wrap=True)
+    alerts_table.add_column("Severity", justify="right", style="cyan", no_wrap=True)
+    alerts_table.add_column("Text", style="magenta")
+    alerts_table.add_column("Source MAC", justify="right", style="yellow", no_wrap=True)
+    alerts_table.add_column("Destination MAC", justify="right", style="yellow", no_wrap=True)
+    alerts_table.add_column("Class", justify="right", style="green", no_wrap=True)
+    filter_level = KismetResultsParser.get_level_for_security(level_filter)
+
+    filtered_definitions = 0
+    for alert in alerts:
+        int_severity: int = KismetResultsParser.get_level_for_security(alert['severity'])
+        if int_severity < filter_level:
+            continue
+        severity = KismetResultsParser.SEVERITY[int_severity]['name']
+        if 0 <= int_severity < 5:
+            severity = f"[bold blue]{severity}[/ bold blue]"
+        if 5 <= int_severity < 10:
+            severity = f"[bold yellow]{severity}[/ bold yellow]"
+        if 10 <= int_severity < 15:
+            severity = f"[bold orange]{severity}[/ bold orange]"
+        else:
+            severity = f"[bold red]{severity}[/ bold red]"
+        filtered_definitions += 1
+        if anonymize:
+            s_mac = KismetResultsParser.anonymize_mac(alert['source_mac'])
+            d_mac = KismetResultsParser.anonymize_mac(alert['dest_mac'])
+        else:
+            s_mac = alert['source_mac']
+            d_mac = alert['dest_mac']
+        alerts_table.add_row(
+            str(KismetResultsParser.pretty_timestamp(alert['timestamp'])),
+            severity,
+            alert['text'],
+            s_mac,
+            d_mac,
+            alert['class']
+        )
+    alerts_table.caption = f"Total alerts: {filtered_definitions}"
+
+    severities_table = Table(title="Severity legend")
+    severities_table.add_column("Severity")
+    severities_table.add_column("Explanation")
+    for severity in severities:
+        explanation = f"[green]{severities[severity]}[/green]"
+        severities_table.add_row(f"[yellow]{severity}[/yellow]", explanation)
+
+    layout = Layout()
+    layout.split(
+        Layout(ratio=2, name="alerts"),
+        Layout(name="severities"),
+    )
+    layout["alerts"].update(alerts_table)
+    layout["severities"].update(severities_table)
+    return layout, filtered_definitions
+```
+
+And now with all the ingredients ready we can see how the final script looks like:
+
+```python
+#!/usr/bin/env python
+"""
+# kismet_home_alerts.py
+# Author
+Jose Vicente Nunez Zuleta (kodegeek.com@protonmail.com)
+"""
+import logging
+import sys
+
+from requests import HTTPError
+import argparse
+
+from kismet_home import CONSOLE
+from kismet_home.config import Reader
+from kismet_home.kismet import KismetWorker, KismetResultsParser
+from kismet_home.tui import create_alert_definition_table, create_alert_layout
+
+if __name__ == '__main__':
+
+    arg_parser = argparse.ArgumentParser(
+        description="Display alerts generated by your local Kismet installation",
+        prog=__file__
+    )
+    arg_parser.add_argument(
+        '--debug',
+        action='store_true',
+        default=False,
+        help="Enable debug mode"
+    )
+    arg_parser.add_argument(
+        '--anonymize',
+        action='store_true',
+        default=False,
+        help="Anonymize MAC addresses"
+    )
+    arg_parser.add_argument(
+        '--level',
+        action='store',
+        default='INFO',
+        help="Enable debug mode"
+    )
+    arg_parser.add_argument(
+        'mode',
+        action='store',
+        choices=['alert_type', 'alerts'],
+        help="Operation mode"
+    )
+
+    try:
+        args = arg_parser.parse_args()
+        conf_reader = Reader()
+        kw = KismetWorker(
+            api_key=conf_reader.get_api_key(),
+            url=conf_reader.get_url()
+        )
+        if args.mode == 'alert_type':
+            alert_definitions = KismetResultsParser.parse_alert_definitions(
+                alert_definitions=kw.get_alert_definitions()
+            )
+            table = create_alert_definition_table(alert_definitions=alert_definitions, level_filter=args.level)
+            if table.columns:
+                CONSOLE.print(table)
+            else:
+                CONSOLE.print(f"[b]Could not get alert definitions![/b]")
+        elif args.mode == 'alerts':
+            alerts, severities, types = KismetResultsParser.process_alerts(
+                alerts=kw.get_all_alerts()
+            )
+            layout, found = create_alert_layout(
+                alerts=alerts,
+                level_filter=args.level,
+                anonymize=args.anonymize,
+                severities=severities
+            )
+            if found:
+                CONSOLE.print(layout)
+            else:
+                CONSOLE.print(f"[b]No alerts to show for level={args.level}[/b]")
+    except (ValueError, HTTPError):
+        logging.exception("There was an error")
+        sys.exit(100)
+    except KeyboardInterrupt:
+        CONSOLE.log("Scan interrupted, exiting...")
+    sys.exit(0)
+```
+
+A few things to note:
+* This is not a long-running application. Instead, is a snapshot of all the alerts. If you wanted, for example to forward this alerts by email or to a framework like [grafana](https://grafana.com/), you are better off using [Websockets](https://pypi.org/project/websockets/) and one of the methods that retrieves only the last changes.
+* The layout is crude, there is plenty of room for improvement. But our little tui is displaying relevant information without too many distractions
+* And if was fun to code!
 
 # Aircrack-ng
 

@@ -13,7 +13,7 @@ import argparse
 from kismet_home import CONSOLE
 from kismet_home.config import Reader
 from kismet_home.kismet import KismetWorker, KismetResultsParser
-from kismet_home.tui import create_alert_definition_table, create_alert_table
+from kismet_home.tui import create_alert_definition_table, create_alert_layout
 
 if __name__ == '__main__':
 
@@ -66,9 +66,14 @@ if __name__ == '__main__':
             alerts, severities, types = KismetResultsParser.process_alerts(
                 alerts=kw.get_all_alerts()
             )
-            table = create_alert_table(alerts=alerts, level_filter=args.level)
-            if table.columns:
-                CONSOLE.print(table)
+            layout, found = create_alert_layout(
+                alerts=alerts,
+                level_filter=args.level,
+                anonymize=args.anonymize,
+                severities=severities
+            )
+            if found:
+                CONSOLE.print(layout)
             else:
                 CONSOLE.print(f"[b]No alerts to show for level={args.level}[/b]")
     except (ValueError, HTTPError):

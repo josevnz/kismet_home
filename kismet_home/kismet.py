@@ -256,3 +256,9 @@ class KismetResultsParser:
         :return:
         """
         return datetime.fromtimestamp(timestamp)
+
+    @staticmethod
+    def anonymize_mac(mac: str):
+        vendor = mac.split(':')[0:3]
+        anonymize = ":".join(vendor) + ":XX:XX:XX"
+        return anonymize

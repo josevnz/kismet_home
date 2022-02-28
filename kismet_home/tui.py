@@ -1,5 +1,6 @@
 from typing import List, Dict, Any
 
+from rich.layout import Layout
 from rich.table import Table
 
 from kismet_home.kismet import KismetResultsParser
@@ -47,11 +48,20 @@ def create_alert_definition_table(
     return definition_table
 
 
-def create_alert_table(
+def create_alert_layout(
         *,
         alerts: List[Dict[str, Any]],
-        level_filter: str = 0
+        level_filter: str = 0,
+        anonymize: bool = False,
+        severities: Dict[str, str]
 ):
+    """
+    :param severities:
+    :param alerts:
+    :param level_filter:
+    :param anonymize:
+    :return:
+    """
     alerts_table = Table(title="Alert definitions")
     alerts_table.add_column("Timestamp", no_wrap=True)
     alerts_table.add_column("Severity", justify="right", style="cyan", no_wrap=True)
@@ -60,6 +70,7 @@ def create_alert_table(
     alerts_table.add_column("Destination MAC", justify="right", style="yellow", no_wrap=True)
     alerts_table.add_column("Class", justify="right", style="green", no_wrap=True)
     filter_level = KismetResultsParser.get_level_for_security(level_filter)
+
     filtered_definitions = 0
     for alert in alerts:
         int_severity: int = KismetResultsParser.get_level_for_security(alert['severity'])
@@ -75,13 +86,34 @@ def create_alert_table(
         else:
             severity = f"[bold red]{severity}[/ bold red]"
         filtered_definitions += 1
+        if anonymize:
+            s_mac = KismetResultsParser.anonymize_mac(alert['source_mac'])
+            d_mac = KismetResultsParser.anonymize_mac(alert['dest_mac'])
+        else:
+            s_mac = alert['source_mac']
+            d_mac = alert['dest_mac']
         alerts_table.add_row(
             str(KismetResultsParser.pretty_timestamp(alert['timestamp'])),
             severity,
             alert['text'],
-            alert['source_mac'],
-            alert['dest_mac'],
+            s_mac,
+            d_mac,
             alert['class']
         )
     alerts_table.caption = f"Total alerts: {filtered_definitions}"
-    return alerts_table
+
+    severities_table = Table(title="Severity legend")
+    severities_table.add_column("Severity")
+    severities_table.add_column("Explanation")
+    for severity in severities:
+        explanation = f"[green]{severities[severity]}[/green]"
+        severities_table.add_row(f"[yellow]{severity}[/yellow]", explanation)
+
+    layout = Layout()
+    layout.split(
+        Layout(ratio=2, name="alerts"),
+        Layout(name="severities"),
+    )
+    layout["alerts"].update(alerts_table)
+    layout["severities"].update(severities_table)
+    return layout, filtered_definitions
