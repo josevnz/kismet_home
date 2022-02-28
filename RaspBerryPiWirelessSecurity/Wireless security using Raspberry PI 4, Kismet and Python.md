@@ -55,7 +55,7 @@ josevnz@raspberrypi:/etc/netplan$ /bin/lsusb|grep Ralink
 Bus 001 Device 004: ID 148f:5370 Ralink Technology, Corp. RT5370 Wireless Adapter
 ```
 
-Now we need to find out what device was mapped to the Ralink adapter; With a little bit of help of the Ubuntu community I found than the Ralink adapter uses the *rt2800usb driver* [5370 Ralink Technology](https://help.ubuntu.com/community/WifiDocs/Device/Ralink_RT5370)
+Now we need to find out what device was mapped to the _Ralink_ adapter; With a little bit of help of the Ubuntu community I found than the Ralink adapter uses the *rt2800usb driver* [5370 Ralink Technology](https://help.ubuntu.com/community/WifiDocs/Device/Ralink_RT5370)
 
 The answer I seek is here:
 
@@ -135,7 +135,7 @@ logprefix=/data/kismet
 
 ### /etc/kismet/kismet_httpd.conf
 
-I will enable SSL for my Kistmet [installation by using a self-signed certificate](https://github.com/josevnz/home_nmap/tree/main/tutorial). I will use for that the Cloudflare CFSSL tools:
+I will enable SSL for my Kismet [installation by using a self-signed certificate](https://github.com/josevnz/home_nmap/tree/main/tutorial). I will use for that the Cloudflare CFSSL tools:
 
 ```shell=
 sudo apt-get update -y
@@ -325,7 +325,7 @@ KISMETOVERR
 fi
 ```
 
-Finally it is time to start kismet (in my case as the non root user josevnz):
+Finally, it is time to start kismet (in my case as the non-root user josevnz):
 
 ```shell=
 # If you know which interface is the one in monitoring mode, then 
@@ -345,7 +345,7 @@ So the wireless devices around me look pretty normal,except one that doesn't hav
 
 The web interface provides all sorts of useful information, but there is a easy way to filter all the mac addresses on my networks?
 
-Kistmet has a REST API, so it is time to see what we can automate from there.
+Kismet has a REST API, so it is time to see what we can automate from there.
 
 ## REST-API
 
@@ -373,7 +373,7 @@ python -m unittest test/unit_test_config.py
 python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py
 ```
 
-More details on the [README.md]() and [DEVELOPER.md]() files.
+More details on the [README.md](../README.md) and [DEVELOPER.md](../DEVELOPER.md) files.
 
 Let's move on with the code.
 
@@ -471,9 +471,9 @@ Implemented the following methods:
 * **check_system_status**: Validates if the administrator (you most likely) defined an administrator for the Kismet server. If not, then all the API queries will fail
 * **get_all_alerts**: Get all the available alerts (if any) from your Kismet server.
 * **get_alert_by_hash**: If you know the identifier (hash) of an alert, you can retrieve the details of that event only
-* **get_alert_definitions**: Get all the alert definitions. Kismet supports a wide range of alerts and an user will definitely be interested to find out what type of alerts they are
+* **get_alert_definitions**: Get all the alert definitions. Kismet supports a wide range of alerts and a user will definitely be interested to find out what type of alerts they are
 
-You can see [all the integration code]() here to see how the methods work in action.
+You can see [all the integration code](../test/test_integration_kismet.py) here to see how the methods work in action.
 
 Also wrote a class that requires admin privileges; I use it to define a custom alert type and to send alerts of that type to kismet, as part of the integration tests. Right now I don't have much use of sending custom alerts to Kismet in real life but that may change in the future, so here is the code:
 
@@ -659,7 +659,7 @@ If you run the integration tests with the admin role enabled, you will see than 
 ![](kismet_generated_alerts.png)
 
 
-As a reminder, you can see how this is used by looking at the code [here](); Showing a sample run of all the integration tests against my installation:
+As a reminder, you can see how this is used by looking at the code [here](../test/test_integration_kismet.py); Showing a sample run of all the integration tests against my installation:
 
 ```shell
 (kismet_home) [josevnz@dmaf5 kismet_home]$ python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py 
@@ -680,7 +680,7 @@ OK
 
 ### Where do we store our API key and other configuration details?
 
-Details like this won't be hardcoded inside the scripts, but instead they will reside on a external configuration file:
+Details like this won't be hardcoded inside the scripts, but instead they will reside on an external configuration file:
 
 ```shell
 (kismet_home) [josevnz@dmaf5 kismet_home]$ cat ~/.config/kodegeek/kismet_home/config.ini 
