@@ -64,7 +64,7 @@ josevnz@raspberrypi:~$ ls /sys/bus/usb/drivers/rt2800usb/*:1.0/net/
 wlan1
 ```
 
-So my final script looks like this:
+So the code that does the wireless card detection looks like this:
 
 ```shell
 root@raspberrypi:~#/bin/cat<<RC_LOCAL>/etc/rc.local
@@ -115,26 +115,15 @@ sudo apt update
 sudo apt install kismet
 ```
 
-Kismet need elevated privileges to run. And deals with possibly hostile data. So runing with minimized permissions is the safest approach. The right way to setup is by using a Unix group and suid binary. My user is 'josevnz' so I did this:
+### Do not run as root, use a SUID binary and a unix group access
+Kismet need elevated privileges to run. And deals with possibly hostile data. So running with minimized permissions is the safest approach. The right way to setup is by using a Unix group and suid binary. My user is 'josevnz' so I did this:
 
 ```shell=
 sudo apt-get install kismet
 sudo usermod --append --groups kismet josevnz
 ```
 
-
-Then I overrode the default configuration with the following parameters:
-
-### /etc/kismet/kismet_logging.conf
-
-Save my logs to a SSD drive dedicated for this purpouse
-
-```
-logprefix=/data/kismet
-```
-
-### /etc/kismet/kismet_httpd.conf
-
+### Encrypt your access to Kismet with a self-signed certificate
 I will enable SSL for my Kismet [installation by using a self-signed certificate](https://github.com/josevnz/home_nmap/tree/main/tutorial). I will use for that the Cloudflare CFSSL tools:
 
 ```shell=
@@ -291,18 +280,18 @@ cfssl gencert -ca intermediate_ca.pem -ca-key intermediate_ca-key.pem -config cf
 cfssl gencert -ca intermediate_ca.pem -ca-key intermediate_ca-key.pem -config cfssl.json -profile=client raspberrypi.home.json| cfssljson -bare raspberry-client
 ```
 
-Add SSL support to /etc/kismet/kismet_http.conf
+Adding SSL support is then as easy as adding the following overrides
 ```
-/bin/cat<<SSL>>/etc/kismet/kismet_http.conf
+/bin/cat<<SSL>>/etc/kismet/kismet_site.conf
 httpd_ssl=true
 httpd_ssl_cert=/etc/pki/raspberrypi/raspberry-server.csr
 httpd_ssl_key=/etc/pki/raspberrypi/raspberry-server-key.pem
 SSL
 ```
 
-#### Kismet overrides file
+### Putting everything together, with a Kismet 'site' overrides file
 
-Kismet has a really nice feature, it can use a file that override some of the defaults, without the need to edit multiple files. In this case My installation will override the SSL settings, Wifi interface and log location. So time to update our /etc/rc.local file:
+Kismet has a really nice feature, it can use a file that override some defaults, without the need to edit multiple files. In this case My installation will override the SSL settings, Wifi interface and log location. So time to update our /etc/rc.local file:
 
 ```shell
 #!/bin/bash
@@ -317,6 +306,7 @@ if [ $? -eq 0 ]; then
     set +ex
     /bin/cat<<KISMETOVERR>/etc/kismet/kismet_site.conf
 server_name=Nunez Barrios Kismet server
+logprefix=/data/kismet
 source=$wlan
 httpd_ssl=true
 httpd_ssl_cert=/etc/pki/raspberrypi/raspberry-server.csr
@@ -335,10 +325,13 @@ Now let's log for the first time on the web interface (In my case http://raspber
 
 ![](kismet-set-login.png)
 
+In here you set up your admin user and password.
+
 ![](kismet-main-screen.png)
 
+After a little time, Kismet will populate the main Dashboard with the list of wireless networks and devices it can detect. You will be surprised not just how many neighbouring devices are out there but how many you have on your own house.
 
-So the wireless devices around me look pretty normal,except one that doesn't have a name:
+In my example, the wireless devices around me look pretty normal,except one that doesn't have a name:
 
 ![](suspect-device-details-kismet.png)
 
@@ -349,11 +342,11 @@ Kismet has a REST API, so it is time to see what we can automate from there.
 
 ## REST-API
 
-The [developer documentation](https://www.kismetwireless.net/docs/devel_group.html) contains examples of how to extend Kismet, specifically the one related to the [Kismet REST-API in Python](https://github.com/kismetwireless/python-kismet-rest).
+The [developer documentation](https://www.kismetwireless.net/docs/devel_group.html) contains examples of how to extend Kismet, specifically the one related to the [official Kismet REST-API in Python](https://github.com/kismetwireless/python-kismet-rest).
 
-But it seems to be missing a feature to use API keys, instead of user/password. And the interaction with the end points doesn't seem to be complicated so I will write my (less rich feature) wrapper.
+But it seems to be missing a feature to use API keys, instead of user/password. And the interaction with the end points doesn't seem to be complicated, so I will write my (less rich feature) wrapper.
 
-You can download and install the code for a small application I wrote ([kismet_home](https://github.com/josevnz/kismet_home) to ilustrate how to work with Kismet (also has a copy of this tutorial) like this:
+You can download and install the code for a small application I wrote ([kismet_home](https://github.com/josevnz/kismet_home) to illustrate how to work with Kismet (also has a copy of this tutorial) like this:
 
 ```shell
 python3 -m venv ~/virtualenv/kismet_home
@@ -368,9 +361,11 @@ And then run the unit tests/ integration tests and even the third party vulnerab
 
 ```shell
 . ~/virtualenv/kismet_home/bin/activate
-pip-audit  --requirement requirements.txt
+# Unit/ integration tests
 python -m unittest test/unit_test_config.py
 python -m unittest /home/josevnz/kismet_home/test/test_integration_kismet.py
+# Third party vulnerability scanner
+pip-audit  --requirement requirements.txt
 ```
 
 More details on the [README.md](../README.md) and [DEVELOPER.md](../DEVELOPER.md) files.
