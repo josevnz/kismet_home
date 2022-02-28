@@ -48,7 +48,7 @@ wlan1     IEEE 802.11  ESSID:off/any
 
 I know I will always set up my 'Ralink Technology, Corp. RT5370 Wireless Adapter' adapter in monitor mode, but I need to be careful as Ubuntu can swap wlan0 and wlan1 (The Broadcom adapter I want to skip).
 
-The Ralink adapter is an usb adapter, so we can find out where it is:
+The _Ralink_ adapter is an usb adapter, so we can find out where it is:
 
 ```shell
 josevnz@raspberrypi:/etc/netplan$ /bin/lsusb|grep Ralink
@@ -1023,6 +1023,7 @@ A few things to note:
 # What did we learn?
 
 * How to install Kismet and secure it with a self-signed SSL certificate
+* Wrote a simple Bash script to set up the correct Wireless interface in monitor mode, after the RaspBerryPI reboots.
 * How to add an API KEY with read-only access to use it instead of the legacy user/ password schema for authentication and authorization
 * Wrote a classes in Python that can communicate with Kismet using its REST-API
 * Added unit and integration tests to the code to make sure everything works and new code changes do not break existing functionality
