@@ -1,3 +1,5 @@
+![](https://github.com/josevnz/kismet_home/raw/main/RaspBerryPiWirelessSecurity/wireless_security_with_kismet_and_python.png
+)
 # Wireless security using Raspberry PI 4, Kismet and Python
 
 Everything is connected to wireless these days; In my case I found that I have LOTS of devices after running a simple [nmap command on my home network](https://www.freecodecamp.org/news/enhance-nmap-with-python/#nmap-101-identify-all-the-public-services-in-our-network):
@@ -9,6 +11,8 @@ Everything is connected to wireless these days; In my case I found that I have L
 So I started to wonder?
 * Is my wireless network secure?
 * How long would it take to an attacker to get in?
+
+![](https://github.com/josevnz/kismet_home/raw/main/RaspBerryPiWirelessSecurity/raspberrypi-wireless-setup.JPG)
 
 I have a Raspberry 4 with Ubuntu installed and decided to use the well-known [Kismet](https://www.kismetwireless.net/) to find out.
 
