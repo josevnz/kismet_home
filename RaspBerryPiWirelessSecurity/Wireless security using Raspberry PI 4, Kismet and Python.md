@@ -10,16 +10,16 @@ So I started to wonder?
 * Is my wireless network secure?
 * How long would it take to an attacker to get in?
 
-I have a Raspberry 4 with Ubuntu installed and decided to use the well-known [Aircrack-ng](https://aircrack-ng.org/index.html) to find out.
+I have a Raspberry 4 with Ubuntu installed and decided to use the well-known [Kismet](https://www.kismetwireless.net/) to find out.
 
 In this article you will learn:
 
 * How to get a whole picture of the networks nearby you with Kismet
 * How to customize Kismet using Python and the REST-API
 
-# Note: The saying 'Ask for forgiveness, not permission' doesn't apply here
+# The saying 'Ask for forgiveness, not permission' doesn't apply here
 
-And by that I mean that you should not be trying to eavesdrop or infiltrate at wireless network that is not yours. It is relatively easy to detect if a new unknow client joined your wireless network, also it is illegal.
+And by that I mean that _you should not be trying to eavesdrop or infiltrate at wireless network that are not yours_. It is relatively easy to detect if a new unknow client joined your wireless network, also it is illegal.
 
 So do the right thing, use this tutorial to learn and not to break into someone else's network, OK?
 
@@ -29,7 +29,7 @@ I will jump a little ahead to show you a small issue with the Raspberry 4 integr
 
 __The Raspberry PI 4 onboard wireless card will not work out of the box as the firmware doesn't support monitor mode__
 
-There are works to [support this](https://github.com/seemoo-lab/bcm-rpi3), but you are also risking bricking your hardware. Instead I took the easy way out and ordered an external Wifi dungle from [CanaKit](https://www.canakit.com/raspberry-pi-wifi.html).
+There are works to [support this](https://github.com/seemoo-lab/bcm-rpi3). Instead, I took the easy way out and ordered an external Wi-Fi dongle from [CanaKit](https://www.canakit.com/raspberry-pi-wifi.html).
 
 The CanaKit wireless card worked out of the box, will see it shortly. But first let's install and play Kismet.
 
@@ -46,7 +46,7 @@ wlan1     IEEE 802.11  ESSID:off/any
 
 ```
 
-I know I will always set up my 'Ralink Technology, Corp. RT5370 Wireless Adapter' adapter in monitor mode, but I need to be careful as Ubuntu can swap wlan0 and wlan1 (The Broadcom adapter I want to skip).
+I know I will always set up my '_Ralink Technology, Corp. RT5370 Wireless Adapter_' adapter in monitor mode, but I need to be careful as Ubuntu can swap wlan0 and wlan1 (The Broadcom adapter I want to skip is a PCI device).
 
 The _Ralink_ adapter is an usb adapter, so we can find out where it is:
 
@@ -115,8 +115,8 @@ sudo apt update
 sudo apt install kismet
 ```
 
-### Do not run as root, use a SUID binary and a unix group access
-Kismet need elevated privileges to run. And deals with possibly hostile data. So running with minimized permissions is the safest approach. The right way to setup is by using a Unix group and suid binary. My user is 'josevnz' so I did this:
+### Do not run as root, use a [SUID binary](https://en.wikipedia.org/wiki/Setuid) and a unix group access
+Kismet need elevated privileges to run. And deals with possibly hostile data. So running with minimized permissions is the safest approach. The right way to setup is by using a Unix group and set user id (_SUID_) binary. My user is 'josevnz' so I did this:
 
 ```shell=
 sudo apt-get install kismet
@@ -157,7 +157,7 @@ CA
 cfssl gencert -initca ca.json | cfssljson -bare ca
 ```
 
-#### SSL profile
+#### SSL profile config
 ```shell
 root@raspberrypi:/etc/pki/raspberrypi# /bin/cat<<PROFILE>/etc/pki/raspberrypi/cfssl.json
 {
@@ -529,7 +529,7 @@ class KismetAdmin(KismetBase):
         r.raise_for_status()
 ```
 
-Getting the data is just part of the story; We need to normalize it so it can be used by the final scripts.
+Getting the data is just part of the story; We need to normalize it, so it can be used by the final scripts.
 
 ### Normalizing the Kismet raw data
 
@@ -1023,4 +1023,4 @@ A few things to note:
 * Wrote a classes in Python that can communicate with Kismet using its REST-API
 * Added unit and integration tests to the code to make sure everything works and new code changes do not break existing functionality
 
-Please leave your comments on the [GitHub repository](https://github.com/josevnz/kismet_home) and report any bugs. But more important get Kismet, get the code and start securing your home wireless infrastructure in no time.
+Please leave your comments on the [git repository](https://github.com/josevnz/kismet_home) and report any bugs. But more important get Kismet, get the code of this tutorial and start securing your home wireless infrastructure in no time.
